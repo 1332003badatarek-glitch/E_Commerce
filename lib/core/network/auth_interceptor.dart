@@ -6,7 +6,7 @@ class AuthInterceptor extends Interceptor {
   final SecureStorage _secureStorage;
   final Dio _refreshDio = Dio();
 
-  AuthInterceptor(this._secureStorage);
+   AuthInterceptor(this._secureStorage);
 
   @override
   void onRequest(
