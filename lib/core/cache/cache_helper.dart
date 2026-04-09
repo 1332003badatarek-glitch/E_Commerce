@@ -1,18 +1,10 @@
+import 'package:e_commerce/core/cache/local_storage_interface.dart';
+import 'package:e_commerce/core/cache/secure_storage_interface.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-abstract class LocalStorage {
-  Future<bool> saveData({required String key, required dynamic value});
-  dynamic getData({required String key});
-  Future<bool> removeData({required String key}); 
-}
 
 
-abstract class SecureStorage {
-  Future<void> saveSecureData({required String key, required String value});
-  Future<String?> getSecureData(String key);
-  Future<void> removeSecureData({required String key}); 
-}
 
 class CacheHelper implements LocalStorage, SecureStorage {
   final SharedPreferences _prefs;
@@ -36,6 +28,7 @@ class CacheHelper implements LocalStorage, SecureStorage {
   }
 
   @override
+
   Future<bool> removeData({required String key}) async {
     return await _prefs.remove(key);
   }

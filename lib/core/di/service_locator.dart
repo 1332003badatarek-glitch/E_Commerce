@@ -1,7 +1,9 @@
+import 'package:e_commerce/core/cache/local_storage_interface.dart';
+import 'package:e_commerce/core/cache/secure_storage_interface.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
-import '../helpers/cache_helper.dart';
+import '../cache/cache_helper.dart';
 
 final getIt = GetIt.instance; 
 
