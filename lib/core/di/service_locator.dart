@@ -1,7 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/features/auth/data/data_sources/remote/auth_api_service.dart';
 import 'package:e_commerce/features/auth/data/repo/auth_repo_ipml.dart';
-import 'package:e_commerce/features/auth/presentation/cubits/login_cubit.dart';
+import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
