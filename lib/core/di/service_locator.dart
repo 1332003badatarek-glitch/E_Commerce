@@ -40,7 +40,7 @@ Future<void> setupServiceLocator() async {
     () => DioFactory.initDio(getIt<AuthInterceptor>()),
   );
 
-  //Auth feature
+  //! Auth feature
 
   // Data Source
   getIt.registerLazySingleton<AuthApiService>(
