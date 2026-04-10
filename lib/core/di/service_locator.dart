@@ -16,23 +16,22 @@ import 'package:e_commerce/features/auth/domain/use_cases/login_use_case.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  // ===========================================================================
-  // 1. CORE
-  // ===========================================================================
+  //core
   final sharedPrefs = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
-  getIt.registerLazySingleton<FlutterSecureStorage>(() => const FlutterSecureStorage());
+  getIt.registerLazySingleton<FlutterSecureStorage>(
+    () => const FlutterSecureStorage(),
+  );
 
   getIt.registerLazySingleton<CacheHelper>(
-    () => CacheHelper(getIt<SharedPreferences>(), getIt<FlutterSecureStorage>()),
+    () =>
+        CacheHelper(getIt<SharedPreferences>(), getIt<FlutterSecureStorage>()),
   );
 
   getIt.registerLazySingleton<LocalStorage>(() => getIt<CacheHelper>());
   getIt.registerLazySingleton<SecureStorage>(() => getIt<CacheHelper>());
 
-  // ===========================================================================
-  // 2. NETWORK 
-  // ===========================================================================
+  // Netwoek
   getIt.registerLazySingleton<AuthInterceptor>(
     () => AuthInterceptor(getIt<SecureStorage>()),
   );
@@ -41,12 +40,12 @@ Future<void> setupServiceLocator() async {
     () => DioFactory.initDio(getIt<AuthInterceptor>()),
   );
 
-  // ===========================================================================
-  // 3. AUTH FEATURE 
-  // ===========================================================================
-  
-  // Data Source 
-  getIt.registerLazySingleton<AuthApiService>(() => AuthApiService(getIt<Dio>()));
+  //Auth feature
+
+  // Data Source
+  getIt.registerLazySingleton<AuthApiService>(
+    () => AuthApiService(getIt<Dio>()),
+  );
 
   // Repository Implementation
   getIt.registerLazySingleton<AuthRepo>(
@@ -54,8 +53,10 @@ Future<void> setupServiceLocator() async {
   );
 
   // Use Cases
-  getIt.registerLazySingleton<LoginUseCase>(() => LoginUseCase(getIt<AuthRepo>()));
+  getIt.registerLazySingleton<LoginUseCase>(
+    () => LoginUseCase(getIt<AuthRepo>()),
+  );
 
-  // Cubits 
+  // Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUseCase>()));
 }
