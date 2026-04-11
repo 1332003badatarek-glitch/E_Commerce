@@ -7,5 +7,5 @@ class ApiConstants {
   static const refreshTokenEndpoint = "auth/refresh-token";
   static const loginEndpoint = "auth/login";
   static const signUpEndpoint = "users/";
-  static const profileEndpoint = "users/";
+  static const profileEndpoint = "auth/profile";
 }

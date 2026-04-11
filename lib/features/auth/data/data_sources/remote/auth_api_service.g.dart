@@ -87,7 +87,7 @@ class _AuthApiService implements AuthApiService {
       Options(method: 'GET', headers: _headers, extra: _extra)
           .compose(
             _dio.options,
-            'users/',
+            'auth/profile',
             queryParameters: queryParameters,
             data: _data,
           )
