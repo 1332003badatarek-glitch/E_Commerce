@@ -10,12 +10,7 @@ class SignUpUseCase extends UseCase<UserEntity, SignUpParams> {
   SignUpUseCase(this.repository);
   @override
   Future<Either<Failure, UserEntity>> call(SignUpParams signUpParams) {
-    return repository.signUp(
-      name: signUpParams.name,
-      email: signUpParams.email,
-      password: signUpParams.password,
-      avatar: signUpParams.avatar,
-    );
+    return repository.signUp(signUpParams);
   }
 }
 
@@ -23,13 +18,12 @@ class SignUpParams {
   final String name;
   final String email;
   final String password;
-  final String avatar;
+  final String? avatarUrl;
 
- const SignUpParams(
-     {
-      required this.name,
+  const SignUpParams({
+    required this.name,
     required this.email,
     required this.password,
-    required this.avatar,
+     this.avatarUrl,
   });
 }
