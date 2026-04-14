@@ -50,12 +50,12 @@ class _AuthApiService implements AuthApiService {
   }
 
   @override
-  Future<UserModel> signUp(Map<String, dynamic> body) async {
+  Future<UserModel> signUp(SignUpRequestBody signUpRequestBody) async {
     final _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{};
     final _headers = <String, dynamic>{};
     final _data = <String, dynamic>{};
-    _data.addAll(body);
+    _data.addAll(signUpRequestBody.toJson());
     final _options = _setStreamType<UserModel>(
       Options(method: 'POST', headers: _headers, extra: _extra)
           .compose(
