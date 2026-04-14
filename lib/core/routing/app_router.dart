@@ -1,3 +1,4 @@
+import 'package:e_commerce/features/auth/presentation/views/sign_up_view.dart';
 import 'package:e_commerce/features/home/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/core/routing/routes.dart';
@@ -10,6 +11,8 @@ class AppRouter {
         return MaterialPageRoute(builder: (_) => const LoginView());
       case Routes.homeView:
         return MaterialPageRoute(builder: (_) => const HomeView());
+      case Routes.signUpView:
+        return MaterialPageRoute(builder: (_) => const SignUpView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
