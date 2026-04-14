@@ -1,7 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:e_commerce/features/auth/data/data_sources/remote/auth_api_service.dart';
+import 'package:e_commerce/features/auth/data/data_sources/remote/files_api_service.dart';
 import 'package:e_commerce/features/auth/data/repo/auth_repo_ipml.dart';
+import 'package:e_commerce/features/auth/data/repo/files_repo_impl.dart';
+import 'package:e_commerce/features/auth/domain/repo/files_repo.dart';
+import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart';
+import 'package:e_commerce/features/auth/domain/use_cases/upload_image_use_case.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
+import 'package:e_commerce/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -46,17 +52,32 @@ Future<void> setupServiceLocator() async {
   getIt.registerLazySingleton<AuthApiService>(
     () => AuthApiService(getIt<Dio>()),
   );
+  getIt.registerLazySingleton<FilesApiService>(
+    () => FilesApiService(getIt<Dio>()),
+  );
 
   // Repository Implementation
   getIt.registerLazySingleton<AuthRepo>(
     () => AuthRepoImpl(getIt<AuthApiService>(), getIt<SecureStorage>()),
+  );
+  getIt.registerLazySingleton<FilesRepo>(
+    () => FilesRepoImpl(getIt<FilesApiService>()),
   );
 
   // Use Cases
   getIt.registerLazySingleton<LoginUseCase>(
     () => LoginUseCase(getIt<AuthRepo>()),
   );
+  getIt.registerLazySingleton<SignUpUseCase>(
+    () => SignUpUseCase(getIt<AuthRepo>()),
+  );
+  getIt.registerLazySingleton<UploadImageUseCase>(
+    () => UploadImageUseCase(getIt<FilesRepo>()),
+  );
 
   // Cubits
   getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUseCase>()));
+  getIt.registerFactory<SignUpCubit>(
+    () => SignUpCubit(getIt<SignUpUseCase>(), getIt<UploadImageUseCase>()),
+  );
 }
