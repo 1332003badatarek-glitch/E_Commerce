@@ -5,8 +5,10 @@ import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/core/network/api_constants.dart';
 import 'package:e_commerce/features/auth/data/data_sources/remote/auth_api_service.dart';
 import 'package:e_commerce/features/auth/data/mappers/auth_mapper.dart';
+import 'package:e_commerce/features/auth/data/models/sign_up_request_body.dart';
 import 'package:e_commerce/features/auth/domain/entities/user_entity.dart';
 import 'package:e_commerce/features/auth/domain/repo/auth_repo.dart';
+import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart';
 
 class AuthRepoImpl extends AuthRepo {
   final AuthApiService _apiService;
@@ -43,27 +45,26 @@ class AuthRepoImpl extends AuthRepo {
   Future<Either<Failure, UserEntity>> getProfile() async {
     try {
       final userModel = await _apiService.getProfile();
-      return Right(AuthMapper.mapUserModelToEntity(userModel));
+      return Right(AuthMapper.userModelToEntityMap(userModel));
     } catch (error) {
       return Left(ErrorHandler.handle(error));
     }
   }
 
   @override
-  Future<Either<Failure, UserEntity>> signUp({
-    required String name,
-    required String email,
-    required String password,
-    required String avatar,
-  }) async {
+  Future<Either<Failure, UserEntity>> signUp(SignUpParams signUpParams) async {
     try {
-      final userModel = await _apiService.signUp({
-        'name': name,
-        'email': email,
-        'password': password,
-        'avatar': avatar,
-      });
-      return Right(AuthMapper.mapUserModelToEntity(userModel));
+      final userModel = await _apiService.signUp(
+        SignUpRequestBody(
+          name: signUpParams.name,
+          email: signUpParams.email,
+          password: signUpParams.password,
+          avatar:
+              signUpParams.avatarUrl ??
+              "https://api.escuelajs.co/static/default-avatar.png",
+        ),
+      );
+      return Right(AuthMapper.userModelToEntityMap(userModel));
     } catch (error) {
       return Left(ErrorHandler.handle(error));
     }

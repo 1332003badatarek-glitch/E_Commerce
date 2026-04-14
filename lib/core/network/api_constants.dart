@@ -8,4 +8,5 @@ class ApiConstants {
   static const loginEndpoint = "auth/login";
   static const signUpEndpoint = "users/";
   static const profileEndpoint = "auth/profile";
+  static const fileUploadEndpoint = "files/upload";
 }
