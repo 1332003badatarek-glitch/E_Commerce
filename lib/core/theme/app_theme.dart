@@ -20,6 +20,7 @@ class AppTheme {
         titleMedium: AppTextStyles.font14SemiBoldBlack,
 
         bodyLarge: AppTextStyles.font12MediumBlack,
+        bodySmall: AppTextStyles.font12SemiBoldPrimary,
 
         bodyMedium: AppTextStyles.font12RegularGrey,
 
