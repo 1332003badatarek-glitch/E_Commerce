@@ -1,5 +1,5 @@
+import 'package:e_commerce/core/helpers/app_helper_functions.dart';
 import 'package:e_commerce/core/routing/routes.dart';
-import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/widgets/login_form.dart';
 import 'package:e_commerce/features/auth/presentation/widgets/sign_up_navigation_widget.dart';
@@ -18,26 +18,13 @@ class LoginView extends StatelessWidget {
           current is LoginFailure,
       listener: (context, state) {
         if (state is LoginLoading) {
-          showDialog(
-            context: context,
-            barrierDismissible: false,
-            builder: (context) =>
-                const Center(child: CircularProgressIndicator()),
-          );
+          AppHelperFunctions.loadingDialog(context);
         } else if (state is LoginSuccess) {
           Navigator.pop(context);
           Navigator.pushNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
           Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                state.erorrMessage,
-                style: Theme.of(context).textTheme.titleSmall,
-              ),
-              backgroundColor: AppColors.primary,
-            ),
-          );
+          AppHelperFunctions.showFailure(context, state.erorrMessage);
         }
       },
       child: Scaffold(
