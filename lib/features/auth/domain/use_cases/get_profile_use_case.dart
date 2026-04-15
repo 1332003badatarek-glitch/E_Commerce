@@ -1,0 +1,16 @@
+import 'package:dartz/dartz.dart';
+import 'package:e_commerce/core/errors/failure.dart';
+import 'package:e_commerce/core/use_cases/use_case_interface.dart';
+import 'package:e_commerce/features/auth/domain/entities/user_entity.dart';
+import 'package:e_commerce/features/auth/domain/repo/auth_repo.dart';
+
+class GetProfileUseCase extends UseCase<UserEntity, NoParams> {
+  final AuthRepo repository;
+
+  GetProfileUseCase(this.repository);
+
+  @override
+  Future<Either<Failure, UserEntity>> call(NoParams params) async {
+    return await repository.getProfile();
+  }
+}
