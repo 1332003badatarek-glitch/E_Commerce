@@ -18,7 +18,7 @@ class LoginUseCase extends UseCase<UserEntity, LoginParams> {
 
     return await loginResult.fold((failure) async => Left(failure), (_) async {
       return await repository.getProfile();
-    });خلين
+    });
   }
 }
 

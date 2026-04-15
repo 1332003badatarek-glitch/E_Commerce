@@ -17,7 +17,13 @@ class SignUpNavigationWidget extends StatelessWidget {
           onPressed: () {
             Navigator.pushNamed(context, Routes.signUpView);
           },
-          child: const Text('Sign Up'),
+          child: Text(
+            'SignUp',
+            style: Theme.of(context).textTheme.bodySmall!.copyWith(
+              fontSize: 14,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
         ),
       ],
     );
