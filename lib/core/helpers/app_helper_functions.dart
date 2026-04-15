@@ -2,16 +2,13 @@ import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AppHelperFunctions {
-
-    static Future<dynamic> loadingDialog(BuildContext context) {
+  static Future<dynamic> loadingDialog(BuildContext context) {
     return showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (context) =>
-              const Center(child: CircularProgressIndicator()),
-        );
+      context: context,
+      barrierDismissible: false,
+      builder: (context) => const Center(child: CircularProgressIndicator()),
+    );
   }
-
 
   static void showFailure(BuildContext context, String errorMessage) {
     ScaffoldMessenger.of(context).showSnackBar(
@@ -20,7 +17,19 @@ class AppHelperFunctions {
           errorMessage,
           style: Theme.of(context).textTheme.titleSmall,
         ),
-        backgroundColor: AppColors.primary,
+        backgroundColor: AppColors.red,
+      ),
+    );
+  }
+
+  static void showSuccess(BuildContext context, String errorMessage) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text(
+          errorMessage,
+          style: Theme.of(context).textTheme.titleSmall,
+        ),
+        backgroundColor: AppColors.success,
       ),
     );
   }
