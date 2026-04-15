@@ -12,20 +12,19 @@ class SignUpInitial extends SignUpState {}
 class SignUpLoading extends SignUpState {}
 
 class SignUpSuccess extends SignUpState {
-  final UserEntity user;
+  final UserEntity userEntity;
 
-  const SignUpSuccess({required this.user});
+  const SignUpSuccess({required this.userEntity});
 
   @override
-  List<Object> get props => [user];
+  List<Object> get props => [userEntity];
 }
 
 class SignUpFailure extends SignUpState {
   final String erorrMessage;
 
- const SignUpFailure({required this.erorrMessage});
+  const SignUpFailure({required this.erorrMessage});
 
   @override
   List<Object> get props => [erorrMessage];
-
 }
