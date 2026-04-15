@@ -12,15 +12,16 @@ class LoginView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<LoginCubit, LoginState>(
-      listenWhen: (previous, current) =>
-          current is LoginLoading ||
-          current is LoginSuccess ||
-          current is LoginFailure,
+      listenWhen: (previous, current) => current is! LoginInitial,
       listener: (context, state) {
         if (state is LoginLoading) {
           AppHelperFunctions.loadingDialog(context);
         } else if (state is LoginSuccess) {
           Navigator.pop(context);
+          AppHelperFunctions.showSuccess(
+            context,
+            'Welcome back, ${state.userEntity.name}',
+          );
           Navigator.pushNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
           Navigator.pop(context);

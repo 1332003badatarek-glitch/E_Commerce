@@ -10,16 +10,17 @@ class SignUpView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocListener<SignUpCubit, SignUpState>(
-      listenWhen: (previous, current) =>
-          current is SignUpLoading ||
-          current is SignUpSuccess ||
-          current is SignUpFailure,
+      listenWhen: (previous, current) => current is! SignUpInitial,
 
       listener: (context, state) {
         if (state is SignUpLoading) {
           AppHelperFunctions.loadingDialog(context);
         } else if (state is SignUpSuccess) {
           Navigator.pop(context);
+          AppHelperFunctions.showSuccess(
+            context,
+            'Account created successfully',
+          );
           Navigator.pushNamed(context, Routes.loginView);
         } else if (state is SignUpFailure) {
           Navigator.pop(context);
