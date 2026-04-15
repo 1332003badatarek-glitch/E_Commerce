@@ -42,6 +42,8 @@ class _LoginFormState extends State<SignUpForm> {
               _selectedImage = image;
             },
           ),
+          SizedBox(height: 20),
+
           CustomTextFormField(
             controller: _nameController,
             hintText: 'Name',
