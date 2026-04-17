@@ -1,3 +1,4 @@
+
 class ApiConstants {
   static const String baseUrl = "https://api.escuelajs.co/api/v1/";
   static const String accessToken = "accessToken";
@@ -9,4 +10,5 @@ class ApiConstants {
   static const signUpEndpoint = "users/";
   static const profileEndpoint = "auth/profile";
   static const fileUploadEndpoint = "files/upload";
+  static const categoriesEndpoint = "categories/";
 }
