@@ -25,7 +25,7 @@ class LoginView extends StatelessWidget {
           Navigator.pushNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
           Navigator.pop(context);
-          AppHelperFunctions.showFailure(context, state.erorrMessage);
+          AppHelperFunctions.showFailure(context, state.errorMessage);
         }
       },
       child: Scaffold(
