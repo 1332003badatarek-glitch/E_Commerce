@@ -20,11 +20,11 @@ class LoginCubit extends Cubit<LoginState> {
       LoginParams(email: email, password: password),
     );
     await loginResult.fold(
-      (failure) async => emit(LoginFailure(erorrMessage: failure.message)),
+      (failure) async => emit(LoginFailure(errorMessage: failure.message)),
       (_) async {
         final userProfileResult = await _getProfileUseCase(NoParams());
         userProfileResult.fold(
-          (failure) => emit(LoginFailure(erorrMessage: failure.message)),
+          (failure) => emit(LoginFailure(errorMessage: failure.message)),
           (user) => emit(LoginSuccess(userEntity: user)),
         );
       },

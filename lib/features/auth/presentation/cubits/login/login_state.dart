@@ -21,10 +21,10 @@ class LoginSuccess extends LoginState {
 }
 
 class LoginFailure extends LoginState {
-  final String erorrMessage;
+  final String errorMessage;
 
-  const LoginFailure({required this.erorrMessage});
+  const LoginFailure({required this.errorMessage});
 
   @override
-  List<Object> get props => [erorrMessage];
+  List<Object> get props => [errorMessage];
 }
