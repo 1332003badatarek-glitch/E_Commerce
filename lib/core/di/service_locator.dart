@@ -9,6 +9,11 @@ import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart'
 import 'package:e_commerce/features/auth/domain/use_cases/upload_image_use_case.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
+import 'package:e_commerce/features/categories/data/data_source/remote/category_api_service.dart';
+import 'package:e_commerce/features/categories/data/repos/category_repo_impl.dart';
+import 'package:e_commerce/features/categories/domain/repos/category_repo.dart';
+import 'package:e_commerce/features/categories/domain/use_cases/get_categories_use_case.dart';
+import 'package:e_commerce/features/categories/presentation/cubits/categories/categories_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -88,5 +93,27 @@ Future<void> setupServiceLocator() async {
   );
   getIt.registerFactory<SignUpCubit>(
     () => SignUpCubit(getIt<SignUpUseCase>(), getIt<UploadImageUseCase>()),
+  );
+
+  //! Categories feature
+
+  // Data Source
+  getIt.registerLazySingleton<CategoryApiService>(
+    () => CategoryApiService(getIt<Dio>()),
+  );
+
+  // Repository Implementation
+  getIt.registerLazySingleton<CategoryRepo>(
+    () => CategoryRepoImpl(getIt<CategoryApiService>()),
+  );
+
+  // Use Case
+  getIt.registerLazySingleton<GetCategoriesUseCase>(
+    () => GetCategoriesUseCase(getIt<CategoryRepo>()),
+  );
+
+  // Cubit
+  getIt.registerFactory<CategoriesCubit>(
+    () => CategoriesCubit(getIt<GetCategoriesUseCase>()),
   );
 }
