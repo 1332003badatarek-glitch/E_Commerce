@@ -1,5 +1,6 @@
 import 'package:e_commerce/core/helpers/app_helper_functions.dart';
 import 'package:e_commerce/core/routing/routes.dart';
+import 'package:e_commerce/core/theme/app_colors.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/widgets/sign_up_form.dart';
 import 'package:flutter/material.dart';
@@ -28,6 +29,7 @@ class SignUpView extends StatelessWidget {
         }
       },
       child: Scaffold(
+        backgroundColor: AppColors.white,
         body: SafeArea(
           child: SingleChildScrollView(
             child: Padding(
