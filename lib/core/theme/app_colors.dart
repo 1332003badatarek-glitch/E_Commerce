@@ -15,6 +15,6 @@ class AppColors {
   static const Color red = Colors.red;
   static const Color starRating = Color(0xFFFFB21A);
 
-  static const Color discountPrice = Color(0xFFBBBBBB);
+  static const Color blueColor = Color(0xFF4392F9);
   static const Color discountPercent = Color(0xFFFE735C);
 }
