@@ -2,7 +2,8 @@ import 'package:e_commerce/core/di/service_locator.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/views/sign_up_view.dart';
-import 'package:e_commerce/features/home/presentation/views/home_view.dart';
+import 'package:e_commerce/features/categories/presentation/cubits/categories/categories_cubit.dart';
+import 'package:e_commerce/features/products/presentation/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:e_commerce/core/routing/routes.dart';
 import 'package:e_commerce/features/auth/presentation/views/login_view.dart';
@@ -19,7 +20,12 @@ class AppRouter {
           ),
         );
       case Routes.homeView:
-        return MaterialPageRoute(builder: (_) => const HomeView());
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<CategoriesCubit>()..fetchCategories(),
+            child: HomeView(),
+          ),
+        );
       case Routes.signUpView:
         return MaterialPageRoute(
           builder: (_) => BlocProvider(
