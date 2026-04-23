@@ -88,15 +88,15 @@ class AppTextStyles {
   static TextStyle font12RegularOldPriceGrey = TextStyle(
     fontSize: 12,
     fontWeight: FontWeight.w400,
-    color: AppColors.discountPrice,
+    color: AppColors.blueColor,
     decoration: TextDecoration.lineThrough,
     fontFamily: _fontFamily,
   );
 
-  static TextStyle font10RegularDiscountOrange = TextStyle(
+  static TextStyle font10RegularDiscountBlack = TextStyle(
     fontSize: 10,
     fontWeight: FontWeight.w400,
-    color: AppColors.discountPercent,
+    color: AppColors.black,
     fontFamily: _fontFamily,
   );
 }
