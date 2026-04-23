@@ -7,7 +7,7 @@ class AppTheme {
     return ThemeData(
       useMaterial3: true,
       primaryColor: AppColors.primary,
-      scaffoldBackgroundColor: AppColors.white,
+      scaffoldBackgroundColor: AppColors.customWhite,
       brightness: Brightness.light,
       fontFamily: 'Montserrat',
 
@@ -24,7 +24,7 @@ class AppTheme {
 
         bodyMedium: AppTextStyles.font12RegularGrey,
 
-        labelSmall: AppTextStyles.font10RegularDiscountOrange,
+        labelSmall: AppTextStyles.font10RegularDiscountBlack,
         titleSmall: AppTextStyles.font14SimiBoldWhite,
       ),
 
