@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'dart:io';
 
-import 'package:e_commerce/features/auth/domain/entities/user_entity.dart';
+import 'package:e_commerce/features/user/domain/entities/user_entity.dart';
 import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart';
 import 'package:e_commerce/features/auth/domain/use_cases/upload_image_use_case.dart';
 import 'package:equatable/equatable.dart';

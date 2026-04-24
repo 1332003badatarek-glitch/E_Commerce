@@ -6,7 +6,7 @@ import 'package:e_commerce/core/network/api_constants.dart';
 import 'package:e_commerce/features/auth/data/data_sources/remote/auth_api_service.dart';
 import 'package:e_commerce/features/auth/data/mappers/auth_mapper.dart';
 import 'package:e_commerce/features/auth/data/models/sign_up_request_body.dart';
-import 'package:e_commerce/features/auth/domain/entities/user_entity.dart';
+import 'package:e_commerce/features/user/domain/entities/user_entity.dart';
 import 'package:e_commerce/features/auth/domain/repo/auth_repo.dart';
 import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart';
 
