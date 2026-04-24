@@ -4,7 +4,7 @@ import 'package:e_commerce/core/errors/error_handler.dart';
 import 'package:e_commerce/core/errors/failure.dart';
 import 'package:e_commerce/core/network/api_constants.dart';
 import 'package:e_commerce/features/auth/data/data_sources/remote/auth_api_service.dart';
-import 'package:e_commerce/features/auth/data/mappers/auth_mapper.dart';
+import 'package:e_commerce/features/user/data/mappers/user_mapper.dart';
 import 'package:e_commerce/features/auth/data/models/sign_up_request_body.dart';
 import 'package:e_commerce/features/user/domain/entities/user_entity.dart';
 import 'package:e_commerce/features/auth/domain/repo/auth_repo.dart';
@@ -41,15 +41,7 @@ class AuthRepoImpl extends AuthRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, UserEntity>> getProfile() async {
-    try {
-      final userModel = await _apiService.getProfile();
-      return Right(AuthMapper.userModelToEntityMap(userModel));
-    } catch (error) {
-      return Left(ErrorHandler.handle(error));
-    }
-  }
+  
 
   @override
   Future<Either<Failure, UserEntity>> signUp(SignUpParams signUpParams) async {
@@ -64,7 +56,7 @@ class AuthRepoImpl extends AuthRepo {
               "https://api.escuelajs.co/static/default-avatar.png",
         ),
       );
-      return Right(AuthMapper.userModelToEntityMap(userModel));
+      return Right(UserMapper.userModelToEntityMap(userModel));
     } catch (error) {
       return Left(ErrorHandler.handle(error));
     }

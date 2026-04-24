@@ -4,9 +4,9 @@ import 'package:e_commerce/features/auth/data/data_sources/remote/files_api_serv
 import 'package:e_commerce/features/auth/data/repo/auth_repo_ipml.dart';
 import 'package:e_commerce/features/auth/data/repo/files_repo_impl.dart';
 import 'package:e_commerce/features/auth/domain/repo/files_repo.dart';
-import 'package:e_commerce/features/user/domain/use_cases/get_profile_use_case.dart';
 import 'package:e_commerce/features/auth/domain/use_cases/sign_up_use_case.dart';
 import 'package:e_commerce/features/auth/domain/use_cases/upload_image_use_case.dart';
+import 'package:e_commerce/features/auth/presentation/cubits/login/login_cubit.dart';
 import 'package:e_commerce/features/auth/presentation/cubits/sign_up/sign_up_cubit.dart';
 import 'package:e_commerce/features/categories/data/data_source/remote/category_api_service.dart';
 import 'package:e_commerce/features/categories/data/repos/category_repo_impl.dart';
@@ -78,15 +78,13 @@ Future<void> setupServiceLocator() async {
     () => SignUpUseCase(getIt<AuthRepo>()),
   );
 
-  getIt.registerLazySingleton<GetProfileUseCase>(
-    () => GetProfileUseCase(getIt<AuthRepo>()),
-  );
-
   getIt.registerLazySingleton<UploadImageUseCase>(
     () => UploadImageUseCase(getIt<FilesRepo>()),
   );
 
   // Cubits
+
+  getIt.registerFactory<LoginCubit>(() => LoginCubit(getIt<LoginUseCase>()));
 
   getIt.registerFactory<SignUpCubit>(
     () => SignUpCubit(getIt<SignUpUseCase>(), getIt<UploadImageUseCase>()),

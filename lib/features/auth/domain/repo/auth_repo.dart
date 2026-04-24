@@ -10,7 +10,6 @@ abstract class AuthRepo {
     required String password,
   });
 
-  Future<Either<Failure, UserEntity>> getProfile();
 
   Future<Either<Failure, UserEntity>> signUp(SignUpParams signUpParams);
 

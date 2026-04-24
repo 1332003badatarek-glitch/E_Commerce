@@ -22,7 +22,7 @@ class Eshop extends StatelessWidget {
       title: AppConstants.appName,
 
       theme: AppTheme.lightTheme,
-      initialRoute: Routes.homeView,
+      initialRoute: Routes.loginView,
       onGenerateRoute: appRouter.generateRoute,
     );
   }
