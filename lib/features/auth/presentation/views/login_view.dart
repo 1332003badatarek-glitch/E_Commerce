@@ -19,10 +19,7 @@ class LoginView extends StatelessWidget {
           AppHelperFunctions.loadingDialog(context);
         } else if (state is LoginSuccess) {
           Navigator.pop(context);
-          AppHelperFunctions.showSuccess(
-            context,
-            'Welcome back, ${state.userEntity.name}',
-          );
+          AppHelperFunctions.showSuccess(context, 'Welcome back!}');
           Navigator.pushNamed(context, Routes.homeView);
         } else if (state is LoginFailure) {
           Navigator.pop(context);
