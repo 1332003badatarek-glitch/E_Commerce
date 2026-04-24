@@ -11,14 +11,7 @@ class LoginInitial extends LoginState {}
 
 class LoginLoading extends LoginState {}
 
-class LoginSuccess extends LoginState {
-  final UserEntity userEntity;
-
-  @override
-  List<Object> get props => [userEntity];
-
-  const LoginSuccess({required this.userEntity});
-}
+ class LoginSuccess extends LoginState {}
 
 class LoginFailure extends LoginState {
   final String errorMessage;
