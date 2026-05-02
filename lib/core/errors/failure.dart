@@ -23,4 +23,12 @@ class UnknownFailure extends Failure {
   const UnknownFailure(super.message);
 }
 
+class BusinessFailure extends Failure {
+  const BusinessFailure(super.message);
+}
+
+
+
+
+
 
