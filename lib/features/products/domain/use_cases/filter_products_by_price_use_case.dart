@@ -14,6 +14,13 @@ class FilterProductsUseCase
   Future<Either<Failure, List<ProductEntity>>> call(
     FilterProductsParams params,
   ) async {
+    if (params.minPrice != null && params.maxPrice != null) {
+      if (params.minPrice! >= params.maxPrice!) {
+        return Left(
+          BusinessFailure("Min price cannot be greater than max price"),
+        );
+      }
+    }
     return await _productsRepo.filterProductsByPrice(
       price: params.price,
       minPrice: params.minPrice,
