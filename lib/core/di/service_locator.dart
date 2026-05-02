@@ -13,6 +13,17 @@ import 'package:e_commerce/features/categories/data/repos/category_repo_impl.dar
 import 'package:e_commerce/features/categories/domain/repos/category_repo.dart';
 import 'package:e_commerce/features/categories/domain/use_cases/get_categories_use_case.dart';
 import 'package:e_commerce/features/categories/presentation/cubits/categories/categories_cubit.dart';
+import 'package:e_commerce/features/products/data/data_source/remote/products_api_service.dart';
+import 'package:e_commerce/features/products/data/repos/products_repo_impl.dart';
+import 'package:e_commerce/features/products/domain/repos/products_repo.dart';
+import 'package:e_commerce/features/products/domain/use_cases/filter_products_by_price_use_case.dart';
+import 'package:e_commerce/features/products/domain/use_cases/get_products_use_case.dart';
+import 'package:e_commerce/features/products/presentation/cubits/products/products_cubit.dart';
+import 'package:e_commerce/features/user/data/data_source/remote/user_api_service.dart';
+import 'package:e_commerce/features/user/data/repos/user_repo_impl.dart';
+import 'package:e_commerce/features/user/domain/repos/user_repo.dart';
+import 'package:e_commerce/features/user/domain/use_cases/get_profile_use_case.dart';
+import 'package:e_commerce/features/user/presentation/cubits/user_cubit/user_cubit_cubit.dart';
 import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
@@ -27,7 +38,7 @@ import 'package:e_commerce/features/auth/domain/use_cases/login_use_case.dart';
 final getIt = GetIt.instance;
 
 Future<void> setupServiceLocator() async {
-  //core
+  //! core
   final sharedPrefs = await SharedPreferences.getInstance();
   getIt.registerLazySingleton<SharedPreferences>(() => sharedPrefs);
   getIt.registerLazySingleton<FlutterSecureStorage>(
@@ -110,5 +121,49 @@ Future<void> setupServiceLocator() async {
   // Cubit
   getIt.registerFactory<CategoriesCubit>(
     () => CategoriesCubit(getIt<GetCategoriesUseCase>()),
+  );
+
+  //! user feature
+
+  //data source
+  getIt.registerLazySingleton<UserApiService>(
+    () => UserApiService(getIt<Dio>()),
+  );
+
+  // Repository Implementation
+  getIt.registerLazySingleton<UserRepo>(
+    () => UserRepoImpl(getIt<UserApiService>(), getIt<CacheHelper>()),
+  );
+  //use cases
+  getIt.registerLazySingleton<GetProfileUseCase>(
+    () => GetProfileUseCase(getIt<UserRepo>()),
+  );
+  //cubit
+  getIt.registerFactory(() => UserCubit(getIt<GetProfileUseCase>()));
+
+  //! Products feature
+
+  // Data Source
+  getIt.registerLazySingleton<ProductsApiService>(
+    () => ProductsApiService(getIt<Dio>()),
+  );
+  // Repository Implementation
+  getIt.registerLazySingleton<ProductsRepo>(
+    () => ProductsRepoImpl(getIt<ProductsApiService>()),
+  );
+  // Use Cases
+  getIt.registerLazySingleton<GetProductsUseCase>(
+    () => GetProductsUseCase(getIt<ProductsRepo>()),
+  );
+
+  getIt.registerLazySingleton<FilterProductsUseCase>(
+    () => FilterProductsUseCase(getIt<ProductsRepo>()),
+  );
+  // Cubit
+  getIt.registerFactory<ProductsCubit>(
+    () => ProductsCubit(
+      getIt<GetProductsUseCase>(),
+      getIt<FilterProductsUseCase>(),
+    ),
   );
 }
