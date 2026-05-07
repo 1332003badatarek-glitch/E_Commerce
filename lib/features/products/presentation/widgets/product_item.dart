@@ -1,11 +1,13 @@
-import 'package:e_commerce/core/helpers/app_constants.dart';
+import 'package:e_commerce/features/products/domain/entities/product_entity.dart';
+import 'package:e_commerce/features/products/presentation/widgets/products_networked_image.dart';
 import 'package:flutter/material.dart';
 import '../../../../core/theme/app_colors.dart';
 
 class ProductItem extends StatelessWidget {
   // final ProductEntity product;
 
-  const ProductItem({super.key});
+  const ProductItem({super.key, required this.productEntity});
+  final ProductEntity productEntity;
 
   @override
   Widget build(BuildContext context) {
@@ -17,14 +19,10 @@ class ProductItem extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 1. صورة المنتج
           ClipRRect(
             borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
-            child: Image.asset(
-              AppConstants.userAvatar, // الـ Entity بتاعنا فيه الصورة جاهزة
-              height: 140,
-              width: double.infinity,
-              fit: BoxFit.cover,
+            child: ProductsNetworkedImage(
+              productImage: productEntity.images[0],
             ),
           ),
 
@@ -33,26 +31,23 @@ class ProductItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                // 2. اسم المنتج
                 Text(
-                  'Mens Starry',
+                  productEntity.title,
                   style: Theme.of(context).textTheme.titleMedium,
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 4),
-                // 3. الوصف
                 Text(
-                  'Mens Starry Sky Printed Shirt 100% Cotton Fabric',
+                  productEntity.description,
                   style: Theme.of(context).textTheme.labelSmall,
                   maxLines: 2,
                   overflow: TextOverflow.ellipsis,
                 ),
                 const SizedBox(height: 8),
-                // 4. السعر (باللون البرايمري بتاعك)
                 Text(
-                  // '\$${product.price}',
-                  '\$${3400}',
+                  '\$${productEntity.price}',
+
                   style: Theme.of(
                     context,
                   ).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold),
