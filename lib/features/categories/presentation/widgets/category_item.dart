@@ -1,7 +1,7 @@
 import 'package:e_commerce/features/categories/domain/entities/category_entity.dart';
 import 'package:flutter/material.dart';
 
-import 'custom_networked_image.dart';
+import 'categories_networked_image.dart';
 
 class CategoryItem extends StatelessWidget {
   final CategoryEntity category;
@@ -29,7 +29,7 @@ class CategoryItem extends StatelessWidget {
           ),
           child: ClipRRect(
             borderRadius: BorderRadius.circular(35),
-            child: CustomNetworkedImage(imageUrl: category.image),
+            child: CategoriesNetworkedImage(imageUrl: category.image),
           ),
         ),
         const SizedBox(height: 8),
