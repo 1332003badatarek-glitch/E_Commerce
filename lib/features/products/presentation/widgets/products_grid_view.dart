@@ -1,29 +1,28 @@
-import 'package:flutter/material.dart';
-import 'product_item.dart'; // تأكد من مسار الـ widget اللي عملناها
+
+import 'package:e_commerce/features/products/domain/entities/product_entity.dart';
+import 'package:e_commerce/features/products/presentation/widgets/product_item.dart';
+import 'package:flutter/widgets.dart';
 
 class ProductsGridView extends StatelessWidget {
-  // final List<ProductEntity> products;
+  const ProductsGridView({super.key, required this.products});
 
-  const ProductsGridView({super.key});
+  final List<ProductEntity> products;
 
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      // جعل الـ Grid تأخذ مساحة المحتوى فقط ولا تملأ الشاشة لو كانت داخل ScrollView
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-      // itemCount: products.length,
-      itemCount: 10,
+      itemCount: products.length,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2, // عدد الأعمدة
-        crossAxisSpacing: 16, // المسافة الأفقية بين الأيتمز
-        mainAxisSpacing: 16, // المسافة الرأسية بين الأيتمز
-        childAspectRatio:
-            0.60, // معامل التناسب (طول الأيتم بالنسبة لعرضها) عشان ميبقاش فيه Overflow
+        crossAxisCount: 2,
+        crossAxisSpacing: 16,
+        mainAxisSpacing: 16,
+        childAspectRatio: 0.60,
       ),
       itemBuilder: (context, index) {
-        return ProductItem();
+        return ProductItem(productEntity: products[index]);
       },
     );
   }
