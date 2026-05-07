@@ -1,7 +1,7 @@
 import 'package:e_commerce/features/categories/presentation/widgets/categories_list_view.dart';
 import 'package:e_commerce/features/products/presentation/widgets/custom_app_bar.dart';
 import 'package:e_commerce/features/products/presentation/widgets/Search_and_filter_section.dart';
-import 'package:e_commerce/features/products/presentation/widgets/products_builder.dart';
+import 'package:e_commerce/features/products/presentation/widgets/products_bloc_slector.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -30,7 +30,7 @@ class HomeView extends StatelessWidget {
 
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 8),
-                  child: ProductsBuilder(),
+                  child: ProductsBlocSlector(),
                 ),
               ],
             ),

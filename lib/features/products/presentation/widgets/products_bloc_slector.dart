@@ -5,8 +5,8 @@ import 'package:e_commerce/features/products/presentation/widgets/products_loadi
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ProductsBuilder extends StatelessWidget {
-  const ProductsBuilder({super.key});
+class ProductsBlocSlector extends StatelessWidget {
+  const ProductsBlocSlector({super.key});
 
   @override
   Widget build(BuildContext context) {

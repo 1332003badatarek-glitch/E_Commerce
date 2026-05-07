@@ -26,7 +26,7 @@ class SearchAndFilterSection extends StatelessWidget {
                 ),
                 contentPadding: EdgeInsets.all(8),
                 enabledBorder: OutlineInputBorder(
-                  borderSide: BorderSide.none, // ده اللي هيخفي الخط الرمادي
+                  borderSide: BorderSide.none, 
                   borderRadius: BorderRadius.circular(10),
                 ),
               ),
@@ -35,19 +35,18 @@ class SearchAndFilterSection extends StatelessWidget {
 
           SizedBox(width: 12),
 
-          // زرار الفلتر بلون الـ Primary بتاعك
           GestureDetector(
             onTap: () {
-              // Logic الفلترة بالـ Price
+              //todo
             },
             child: Container(
-              height: 50, // متناسق مع ارتفاع الـ TextField
+              height: 50,
               width: 50,
               decoration: BoxDecoration(
                 color: AppColors.primary,
                 borderRadius: BorderRadius.circular(
                   10,
-                ), // نفس الـ radius اللي في الثيم
+                ),
               ),
               child: const Icon(Icons.tune, color: AppColors.white),
             ),
