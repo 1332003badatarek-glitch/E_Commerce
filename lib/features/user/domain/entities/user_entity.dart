@@ -4,7 +4,7 @@ class UserEntity extends Equatable {
   final int id;
   final String name;
   final String email;
-  final String avatar;
+  final String? avatar;
 
   const UserEntity({
     required this.id,
