@@ -20,7 +20,11 @@ class LoginView extends StatelessWidget {
         } else if (state is LoginSuccess) {
           Navigator.pop(context);
           AppHelperFunctions.showSuccess(context, 'Welcome back!}');
-          Navigator.pushNamed(context, Routes.homeView);
+          Navigator.pushNamedAndRemoveUntil(
+            context,
+            Routes.mainView,
+            (route) => false,
+          );
         } else if (state is LoginFailure) {
           Navigator.pop(context);
           AppHelperFunctions.showFailure(context, state.errorMessage);
