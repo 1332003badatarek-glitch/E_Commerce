@@ -18,6 +18,7 @@ import 'package:e_commerce/features/products/data/repos/products_repo_impl.dart'
 import 'package:e_commerce/features/products/domain/repos/products_repo.dart';
 import 'package:e_commerce/features/products/domain/use_cases/filter_products_by_price_use_case.dart';
 import 'package:e_commerce/features/products/domain/use_cases/get_products_use_case.dart';
+import 'package:e_commerce/features/products/presentation/cubits/Navigation/navigation_cubit.dart';
 import 'package:e_commerce/features/products/presentation/cubits/products/products_cubit.dart';
 import 'package:e_commerce/features/user/data/data_source/remote/user_api_service.dart';
 import 'package:e_commerce/features/user/data/repos/user_repo_impl.dart';
@@ -166,4 +167,6 @@ Future<void> setupServiceLocator() async {
       getIt<FilterProductsUseCase>(),
     ),
   );
+  //!modules
+  getIt.registerFactory<NavigationCubit>(() => NavigationCubit());
 }
